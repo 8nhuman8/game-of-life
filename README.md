@@ -27,6 +27,7 @@
 
 ## Usage and installation
 1. Upgrade required packages with `pip install -r requirements.txt --upgrade` (if you don't have one, it will be automatically installed).
+2. Run the `main.py` with `python src/main.py`.
 
 ## Credits and references
 [Wikipedia page](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) about this cellular automata.
