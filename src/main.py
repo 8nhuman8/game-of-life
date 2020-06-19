@@ -10,9 +10,10 @@ init()
 
 
 WIDTH, HEIGTH = 500, 500
-SCALE = 50
-
-COLS, ROWS = WIDTH // SCALE, HEIGTH // SCALE
+SCALE = 10
+OUTLINE_FACTOR = 0.8
+COLS = WIDTH // SCALE
+ROWS = HEIGTH // SCALE
 
 grid = choice([True, False], (COLS, ROWS))
 
@@ -26,11 +27,19 @@ while running:
         if event.type == QUIT:
             running = False
 
-    # for x in grid:
-    #     if cell:
-    #         rect(screen, (255, 255, 255))
-    #     else:
-    #         rect(screen, (0, 0, 0))
+    for x in range(COLS):
+        for y in range(ROWS):
+            if grid[x, y]:
+                rect(
+                    screen,
+                    (255, 255, 255),
+                    (
+                        x * SCALE,
+                        y * SCALE,
+                        int(SCALE * OUTLINE_FACTOR),
+                        int(SCALE * OUTLINE_FACTOR)
+                    )
+                )
 
     flip()
 
