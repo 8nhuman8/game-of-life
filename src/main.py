@@ -18,6 +18,8 @@ set_caption('Game of Life')
 
 WIDTH, HEIGTH = 500, 500
 
+FPS = 60
+
 SCALE = 10
 OUTLINE_FACTOR = 0.8
 
@@ -53,7 +55,7 @@ def next_generation(grid: NDArray[bool]) -> NDArray[bool]:
             neighbors = count_neighbors(grid, x, y)
             if not state and neighbors == 3:
                next[x, y] = True
-            elif state and not neighbors in [2, 3]:
+            elif state and neighbors not in [2, 3]:
                next[x, y] = False
             else:
                next[x, y] = state
@@ -89,7 +91,7 @@ while running:
     grid = next_generation(grid)
 
     flip()
-    clock.tick(60)
+    clock.tick(FPS)
 
 
 pygame_quit()
