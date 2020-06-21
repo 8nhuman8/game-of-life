@@ -9,6 +9,8 @@ from pygame.time import Clock
 from numpy import zeros
 from numpy.random import choice
 
+from nptyping import NDArray
+
 
 init()
 set_caption('Game of Life')
@@ -34,7 +36,7 @@ clock = Clock()
 running = True
 
 
-def count_neighbors(grid, x, y):
+def count_neighbors(grid: NDArray[bool], x: int, y: int) -> int:
     sum = -int(grid[x, y])
     for i in range(-1, 2):
         for j in range(-1, 2):
@@ -43,7 +45,7 @@ def count_neighbors(grid, x, y):
             sum += int(grid[col, row])
     return sum
 
-def next_generation(grid):
+def next_generation(grid: NDArray[bool]) -> NDArray[bool]:
     next = zeros((COLS, ROWS), bool)
     for x in range(COLS):
         for y in range(ROWS):
