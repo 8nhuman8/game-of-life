@@ -1,6 +1,10 @@
 # Game of Life
 ### The Python implementation of the most famous cellular automaton called "Game of Life" devised by the British mathematician John Horton Conway in 1970
 
+<p align="center">
+  <img src="docs/README/demo.gif">
+</p>
+
 ## Table of contents
 - [Brief information about the Game of Life](#brief-information-about-the-game-of-life)
 - [Usage and installation](#usage-and-installation)
