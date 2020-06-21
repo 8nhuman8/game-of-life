@@ -1,4 +1,4 @@
-from pygame import init, QUIT
+from pygame import init, QUIT, Color
 from pygame import quit as pygame_quit
 from pygame.event import get as get_events
 from pygame.display import set_mode, set_caption
@@ -15,10 +15,16 @@ set_caption('Game of Life')
 
 
 WIDTH, HEIGTH = 500, 500
+
 SCALE = 10
 OUTLINE_FACTOR = 0.8
+
 COLS = WIDTH // SCALE
 ROWS = HEIGTH // SCALE
+
+WHITE = Color(255, 255, 255)
+BLACK = Color(0, 0, 0)
+
 
 grid = choice([True, False], (COLS, ROWS))
 
@@ -33,7 +39,7 @@ def count_neighbors(grid, x, y):
     for i in range(-1, 2):
         for j in range(-1, 2):
             col = (x + i + COLS) % COLS
-            row = (x + j + ROWS) % ROWS
+            row = (y + j + ROWS) % ROWS
             sum += int(grid[col, row])
     return sum
 
@@ -45,7 +51,7 @@ def next_generation(grid):
             neighbors = count_neighbors(grid, x, y)
             if not state and neighbors == 3:
                next[x, y] = True
-            elif state and (neighbors < 2 or neighbors > 3):
+            elif state and not neighbors in [2, 3]:
                next[x, y] = False
             else:
                next[x, y] = state
@@ -61,11 +67,18 @@ while running:
         for y in range(ROWS):
             if grid[x, y]:
                 rect(
-                    screen,
-                    (255, 255, 255),
+                    screen, WHITE,
                     (
-                        x * SCALE,
-                        y * SCALE,
+                        x * SCALE, y * SCALE,
+                        int(SCALE * OUTLINE_FACTOR),
+                        int(SCALE * OUTLINE_FACTOR)
+                    )
+                )
+            else:
+                rect(
+                    screen, BLACK,
+                    (
+                        x * SCALE, y * SCALE,
                         int(SCALE * OUTLINE_FACTOR),
                         int(SCALE * OUTLINE_FACTOR)
                     )
